@@ -2,6 +2,7 @@ import { OrbitControls, PerspectiveCamera, View } from "@react-three/drei";
 import Lights from "./Lights";
 import { Suspense } from "react";
 import IPhone from "./IPhone";
+import Loader from "./Loader";
 import * as THREE from "three";
 
 const ModalView = ({
@@ -17,7 +18,9 @@ const ModalView = ({
     <View
       index={index}
       id={gsapType}
-      className={`w-full h-full ${index === 2} ? "right-[-100%]" : ""`}
+      className={`w-full h-full absolute ${
+        index === 2 ? "right-[-100%]" : ""
+      } `}
     >
       {/* Ambient Light */}
       <ambientLight intensity={0.3} />
@@ -40,7 +43,7 @@ const ModalView = ({
         name={`${index === 1} ? "small" : "large"`}
         position={[0, 0, 0]}
       >
-        <Suspense fallback={<div>Loading</div>}>
+        <Suspense fallback={<Loader />}>
           <IPhone
             scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
             items={items}
